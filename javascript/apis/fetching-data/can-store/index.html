@@ -52,7 +52,7 @@
     <script src="can-script.js"></script>
 
 
-<p>Count numbers: <output id="result"></output></p>
+<p>Count numbers: <output id="Test_result"></output></p>
 <button onclick="startWorker()">Start Worker</button>
 <button onclick="stopWorker()">Stop Worker</button>
 <br /><br />
@@ -69,12 +69,12 @@ var w;
         w=new Worker("demo_workers.js");
       }
       w.onmessage = function (event) {
-        document.getElementById("result").innerHTML=event.data;
+        document.getElementById("Test_result").innerHTML=event.data;
       };
     }
     else
     {
-      document.getElementById("result").innerHTML="Sorry, your browser
+      document.getElementById("Test_result").innerHTML="Sorry, your browser
       does not support Web Workers...";
     }
   }
