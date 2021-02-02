@@ -1,100 +1,22 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>The Can Store</title>
-    <link href="https://fonts.googleapis.com/css?family=Cherry+Swash|Raleway" rel="stylesheet">
-    <link href="can-style.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
+<body>
 
-  <body>
-    <header>
-      <h1>The Can Store</h1>
-    </header>
-    <div>
-      <aside>
-        <form>
-          <div>
-            <label for="category">Choose a category:</label>
-            <select id="category">
-              <option selected>All</option>
-              <option>Vegetables</option>
-              <option>Meat</option>
-              <option>Soup</option>
-            </select>
-          </div>
-          <div>
-            <label for="searchTerm">Enter search term:</label>
-            <input type="text" id="searchTerm" placeholder="e.g. beans">
-          </div>
-          <div>
-            <button>Filter results</button>
-          </div>
-        </form>
-      </aside>
-      <main>
+<h1>用 JSON 字符串创建对象</h1>
 
-      </main>
-    </div>
-    <footer>
-      <p>All icons found at the Noun Project:</p>
-
-      <ul>
-        <li>Bean can icon by <a href="https://thenounproject.com/yalanis/">Yazmin Alanis</a></li>
-        <li>Vegetable icon by <a href="https://thenounproject.com/skatakila/">Ricardo Moreira</a></li>
-        <li>Soup icon by <a href="https://thenounproject.com/ArtZ91/">Arthur Shlain</a></li>
-        <li>Meat Chunk icon by <a href="https://thenounproject.com/smashicons/">Oliviu Stoian</a>.</li>
-      </ul>
-    </footer>
-    <script src="can-script.js"></script>
-
-
-<p>Count numbers: <output id="Test_result"></output></p>
-<button onclick="startWorker()">Start Worker</button>
-<button onclick="stopWorker()">Stop Worker</button>
-<br /><br />
+<p id="demo"></p>
 
 <script>
-var w;
+var text = '{"employees":[' +
+'{"firstName":"Bill","lastName":"Gates" },' +
+'{"firstName":"Steve","lastName":"Jobs" },' +
+'{"firstName":"Elon","lastName":"Musk" }]}';
 
-  function startWorker()
-  {
-    if(typeof(Worker)!=="undefined")
-    {
-      if(typeof(w)=="undefined")
-      {
-        w=new Worker("demo_workers.js");
-      }
-      w.onmessage = function (event) {
-        document.getElementById("Test_result").innerHTML=event.data;
-      };
-    }
-    else
-    {
-      document.getElementById("Test_result").innerHTML="Sorry, your browser
-      does not support Web Workers...";
-    }
-  }
-
-  function stopWorker()
-  {
-    w.terminate();
-  }
+obj = JSON.parse(text);
+document.getElementById("demo").innerHTML =
+obj.employees[2].firstName + " " + obj.employees[2].lastName;
 </script>
 
-<p>点击“试一试”。等待 3 秒钟，页面将提示“Hello”。</p>
-
-<button onclick="setTimeout(myFunction, 3000);">试一试</button>
-
-<script>
-function myFunction() {
-  alert('Hello');
-}
-</script>
-
-
-  </body>
+</body>
 </html>
